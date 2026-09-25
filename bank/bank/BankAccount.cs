@@ -1,11 +1,13 @@
-﻿namespace bank;
+﻿using System.Text;
+
+namespace bank;
 
 internal class BankAccount
 {
     private List<Transaction> _allTransactions = new List<Transaction>();
     public string Owner { get; private set; }
-    public decimal Balance 
-    { 
+    public decimal Balance
+    {
         get
         {
             decimal balance = 0;
@@ -19,7 +21,7 @@ internal class BankAccount
     public string Number { get; }
     private static int s_accountNumberSeed = 1000000000;
     public BankAccount(string name, decimal initialBalance)
-    { 
+    {
         Owner = name;
         MakeDeposite(initialBalance, DateTime.UtcNow, "initial balance");
         Number = s_accountNumberSeed.ToString();
@@ -41,7 +43,7 @@ internal class BankAccount
         {
             throw new ArgumentOutOfRangeException(nameof(amount), "Amount off withdrawal must be positive");
         }
-        
+
         if (Balance < amount)
         {
             throw new InvalidOperationException("Not sufficient rubls for this withdrawal");
@@ -50,4 +52,21 @@ internal class BankAccount
         var withdrawal = new Transaction(-amount, date, note);
         _allTransactions.Add(withdrawal);
     }
+
+    public string GetAccountHistory()
+    {
+        var report = new StringBuilder();
+
+        decimal balance = 0;
+        report.AppendLine("Data\t\tAmount\tBalance\tNote");
+        foreach (var item in _allTransactions)
+        {
+            balance += item.Amount;
+            report.AppendLine($"{item.Date.ToShortDateString()}\t{item.Amount}\t{balance}\t{item.Note}");
+        }
+        return report.ToString();
+    }
 }
+
+
+
