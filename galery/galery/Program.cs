@@ -17,7 +17,7 @@ class Program
 
         Console.WriteLine("Выберите источник данных:");
         Console.WriteLine("1 — InMemoryRepository");
-        Console.WriteLine("2 — CsvRepository");
+        Console.WriteLine("2 —  CsvRepository");
         Console.Write("Ваш выбор: ");
 
         int choice;
