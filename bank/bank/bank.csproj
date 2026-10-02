@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="LineOfCreditAccount.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LineOfCreditAccount.cs" />
+  </ItemGroup>
+
 </Project>

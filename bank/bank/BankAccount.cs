@@ -7,7 +7,9 @@ namespace bank;
 
 public class BankAccount
 {
+    private readonly decimal _minimumBalance;
     private List<Transaction> _allTransactions = new List<Transaction>();
+
     public string Owner { get; private set; }
     public decimal Balance
     {
@@ -23,10 +25,15 @@ public class BankAccount
     }
     public string Number { get; }
     private static int s_accountNumberSeed = 1000000000;
-    public BankAccount(string name, decimal initialBalance)
+    public BankAccount(string name, decimal initialBalance) : this(name, initialBalance, 0) { }
+    public BankAccount(string name, decimal initialBalance, decimal minimumBalance)
     {
         Owner = name;
-        MakeDeposite(initialBalance, DateTime.UtcNow, "initial balance");
+        _minimumBalance = minimumBalance;
+        if (initialBalance > 0)
+        {
+            MakeDeposite(initialBalance, DateTime.UtcNow, "initial balance");
+        }
         Number = s_accountNumberSeed.ToString();
         s_accountNumberSeed++;
     }
@@ -42,18 +49,25 @@ public class BankAccount
 
     public void MakeWithdrawal(decimal amount, DateTime date, string note)
     {
-        if (amount < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(amount), "Amount off withdrawal must be positive");
-        }
-
-        if (Balance < amount)
-        {
-            throw new InvalidOperationException("Not sufficient rubls for this withdrawal");
-        }
-
-        var withdrawal = new Transaction(-amount, date, note);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount);
+        Transaction? overdraftTransaction = CheckWithdrawalLimit(Balance - amount < _minimumBalance);
+        Transaction? withdrawal = new(-amount, date, note);
         _allTransactions.Add(withdrawal);
+
+        if (overdraftTransaction is not null)
+        {
+            _allTransactions.Add(overdraftTransaction);
+        }
+    }
+
+    protected virtual Transaction? CheckWithdrawalLimit(bool v)
+    {
+        if (v)
+        {
+            throw new InvalidOperationException
+                ("Not sufficient rubls for this withdrawal");
+        }
+        return default;
     }
 
     public string GetAccountHistory()
@@ -72,11 +86,11 @@ public class BankAccount
 
 
 
-// ключевое слово virtual позволяет в дочерном классе представить другую реализацию метода PerformMonthAndTransactions()
+    // ключевое слово virtual позволяет в дочерном классе представить другую реализацию метода PerformMonthAndTransactions()
 
-public virtual void PerformMonthAndTransactions()
+    public virtual void PerformMonthAndTransactions()
 
-{
+    {
 
     }
     // переопрелеояем метод который унаследовали от object 

@@ -3,7 +3,7 @@
   <Class Name="bank.BankAccount">
     <Position X="4.75" Y="1" Width="4.5" />
     <TypeIdentifier>
-      <HashCode>IAAAACCAQAAAAAAEAEgAAAAAAABAAQAAAAAAAQAAAAA=</HashCode>
+      <HashCode>YAAAACCAQAAAAAAEAEgAAAAAACBAAQAAAAAAAQAAAAA=</HashCode>
       <FileName>BankAccount.cs</FileName>
     </TypeIdentifier>
   </Class>
