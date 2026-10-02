@@ -23,6 +23,15 @@
             {
                 Console.WriteLine(e.Message);
             }
+
+            InterestEarningAccount interestEarning = new("pey ", 1000m);
+            interestEarning.MakeDeposite(100m, DateTime.UtcNow, ";)");
+            interestEarning.MakeWithdrawal(10m, DateTime.UtcNow, ";)");
+            interestEarning.PerformMonthAndTransactions();
+            Console.WriteLine(interestEarning); //= Console.Writeline(interestEarning.ToString());
+            Console.WriteLine(interestEarning.GetAccountHistory);
         }
     }
+
+
 }

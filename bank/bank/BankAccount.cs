@@ -2,7 +2,10 @@
 
 namespace bank;
 
-internal class BankAccount
+
+// BankAccoun - потомок класса object => можно переопределить 
+
+public class BankAccount
 {
     private List<Transaction> _allTransactions = new List<Transaction>();
     public string Owner { get; private set; }
@@ -66,6 +69,24 @@ internal class BankAccount
         }
         return report.ToString();
     }
+
+
+
+// ключевое слово virtual позволяет в дочерном классе представить другую реализацию метода PerformMonthAndTransactions()
+
+public virtual void PerformMonthAndTransactions()
+
+{
+
+    }
+    // переопрелеояем метод который унаследовали от object 
+    // этот метод должен возвращать строку с состоянием объекта 
+    //public override string ToString()
+    //{
+    //    return $"Type: Owner: {Owner}\tNumber of account: {Number}";
+    //}
+    public override string ToString()
+        => $"Type: {GetType().Name}\tOwner: {Owner}\tNumber of account: {Number}";
 }
 
 
