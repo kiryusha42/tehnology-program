@@ -1,6 +1,6 @@
 ﻿namespace bank
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -30,6 +30,14 @@
             interestEarning.PerformMonthAndTransactions();
             Console.WriteLine(interestEarning); //= Console.Writeline(interestEarning.ToString());
             Console.WriteLine(interestEarning.GetAccountHistory);
+
+            GiftCartAccount giftCart = new("pey", 1000m, 5000m);
+            giftCart.MakeDeposite(100m, DateTime.UtcNow, ";)");
+            giftCart.MakeWithdrawal(10m, DateTime.UtcNow, ";(");
+            giftCart.PerformMonthAndTransactions();
+
+            Console.WriteLine(giftCart);
+            Console.WriteLine(giftCart.GetAccountHistory());
         }
     }
 
