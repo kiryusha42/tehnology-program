@@ -1,10 +1,12 @@
-﻿namespace Bank;
+﻿namespace bank;
+
 public class LineOfCreditAccount : BankAccount
 {
     public LineOfCreditAccount(string name, decimal initialBalance, decimal creditLimit) : base(name, initialBalance, -creditLimit) { }
-    public override void PerformMonthAndTransactions() 
+    public override void PerformMonthAndTransactions()
     {
-        if (Balance < 0) {
+        if (Balance < 0)
+        {
             decimal interest = -Balance * 0.07m;
             MakeWithdrawal(interest, DateTime.UtcNow, "Charge monthly interest");
         }

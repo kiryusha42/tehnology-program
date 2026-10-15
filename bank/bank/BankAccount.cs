@@ -4,11 +4,21 @@ namespace bank;
 
 
 // BankAccoun - потомок класса object => можно переопределить 
+/// <summary>
+/// Банковский счет
+/// <summary>
 
 public class BankAccount
 {
+    /// <summary>
+    /// минимальный допустимый баланс счета
+    /// </summary>
     private readonly decimal _minimumBalance;
+    /// <summary>
+    /// список всех транзакций
+    ///   </summary>
     private List<Transaction> _allTransactions = new List<Transaction>();
+
 
     public string Owner { get; private set; }
     public decimal Balance
