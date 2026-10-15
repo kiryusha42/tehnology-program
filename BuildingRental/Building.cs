@@ -14,8 +14,8 @@ public abstract class Building
 
     public string CadastralNumber => _cadastralNumber;
 
-    public double PricePerSqm => Price / (decimal)Area;
-
+    public double PricePerSqm =>
+        Area > 0 ? (double)(Price / (decimal)Area) : 0;
     /// <summary>
     /// Creates a building with all parameters.
     /// </summary>
