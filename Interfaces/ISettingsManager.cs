@@ -1,8 +1,10 @@
-﻿using System;
+﻿using GuessNumberGame.Models;
 
-public class Class1
+namespace GuessNumberGame.Interfaces
 {
-	public Class1()
-	{
-	}
+    public interface ISettingsManager
+    {
+        GameSettings ReadSettings();
+        void WriteSettings(GameSettings config);
+    }
 }

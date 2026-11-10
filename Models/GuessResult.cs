@@ -1,8 +1,9 @@
-﻿using System;
-
-public class Class1
+﻿namespace GuessNumberGame.Models
 {
-	public Class1()
-	{
-	}
+    public enum GuessResult
+    {
+        Guessed,
+        Over,
+        Under
+    }
 }

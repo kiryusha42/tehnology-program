@@ -1,8 +1,14 @@
-﻿using System;
-
-public class Class1
+﻿namespace GuessNumberGame.Models
 {
-	public Class1()
-	{
-	}
-}
+    public class GameSettings
+    {
+        public string Nickname { get; set; } 
+        public int Level { get; set; }
+
+        public GameSettings() 
+        {
+            Nickname = "игрок";
+                Level = 1;
+        }
+    }
+}   

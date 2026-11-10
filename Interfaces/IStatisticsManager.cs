@@ -1,8 +1,10 @@
-﻿using System;
+﻿using GuessNumberGame.Models;
 
-public class Class1
+namespace GuessNumberGame.Interfaces
 {
-	public Class1()
-	{
-	}
+    public interface IStatisticsManager
+    {
+        PlayerStats ReadStats();
+        void AddGameResult(bool isWin, int moves);
+    }
 }

@@ -1,8 +1,11 @@
 ﻿using System;
+using GuessNumberGame.Models;
 
-public class Class1
+namespace GuessNumberGame.Interfaces
 {
-	public Class1()
-	{
-	}
+    public interface IGameEngine
+    {
+        void StartGame( int Level);
+        GuessResult CheckNumber(int inputNum);
+    }
 }
